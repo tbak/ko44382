@@ -1,0 +1,126 @@
+import random
+import math as m
+import cmath
+f=8.0
+A=1.0
+t=0
+T=1
+gam = 3 * m.pi
+fs=A*m.sin(2*m.pi*f*t+gam)
+
+N=int(T*fs)#długoć trwania syngału
+def Xre(k):
+  return Xre(k)+(x(n)*m.sin((-2(m.pi*k*n)/N)))
+
+def Xim(k):
+  return Xim(k)+(x(n)*m.sin((-2(m.pi*k*n)/N)))
+def DFT(fnList):
+    N=int(T*fs)#długoć trwania syngału
+    x=[N]
+    Xre=[N]
+    Xim=[N]
+    Lista=[]
+    for k in range(0,N-1):
+       
+        for n in range(0,N-1):
+            Xre(k)
+            Xim(k)
+            #Fm += fnList[n] * cmath.exp(- 1j *gam * m * n / N)
+        Lista.append(Xre(k)/N)
+        Lista.append(Xim(k)/N)
+    return Lista
+        
+def InverseDFT(FmList):
+    N=int(T*fs)#długoć trwania syngału
+    x=[N]
+    Xre=[N]
+    Xim=[N]
+    Lista=[]
+    for k in range(0,N-1):
+       
+        for n in range(0,N-1):
+            -Xre(k)
+            -Xim(k)
+            #Fm += fnList[n] * cmath.exp(- 1j *gam * m * n / N)
+        Lista.append(Xre(k)/N)
+        Lista.append(Xim(k)/N)
+    return Lista
+def M(k):#widmo amplitudowe
+    M=[N]
+    for k in range(0,N-1):
+        return m.sqrt(Xre(k)*Xre(k)+Xim(k)*Xim(k))
+    return (M(k)*2)/N #przeskalowanie
+
+#wartosc amplitudy decybelowej
+def M2(k):
+    return 10* m.log10(M(k))
+#skala czestotliwosci
+for k in range(0,N-1):
+    fk=k*(fs/N)
+   
+print(fk)
+
+#aproksymacja szeregiem fouriera 
+
+A=1.0
+T=0.01#czas trwania przebiegu sygnalu
+fs=100000#czestotliwosc probkowania
+M=49
+Ts=1/fs
+N=(T*fs)
+x=[N]
+t=[N]
+t0=0.0
+dt=Ts
+tN=T-dt
+n=0
+tn=t0+(n*dt)
+def x(n):
+    return x(n)+(sin(m*2*m.pi*f*tn)/m)
+def x1(n):
+    return x(n)*((4*A)/m.pi)
+while (tn<tN):
+    m=1
+    while(m<M):
+        x(n)
+        m=m+2
+    end
+    x1(x)
+    #t(n)=tn
+    n=n+1
+    tn=t0+(n*dt)
+    
+
+# TEST
+print ("Input Sine Wave Signal:")
+N = 283 # degrees (Number of samples)
+f=8.0
+A=1.0
+t=0
+T=1
+
+print ("frequency = " + str(f))
+print ("amplitude = " + str(A))
+print ("phase ang = " + str(fs))
+
+fnList = []
+for n in range(N):
+    t = float(n) / N * gam
+    fn = A * m.sin(f * t + fs / 360 *gam)
+    fnList.append(fn)
+
+print ("DFT Calculation Results:")
+Lista = DFT(fnList)
+threshold = 0.001
+for (i,fnList) in enumerate(Lista):
+    if abs(Lista) > threshold:
+        print ("frequency = " + str(i))
+        print ("amplitude = " + str(abs(fs) * 2.0))
+        fs = int(((cmath.phase(fs) + gam + gam / 4.0) % gam) / gam * 360 + 0.5)
+        print ("phase ang = " + str(fs))
+      
+
+### Recreate input signal from DFT results and compare to input signal
+##fnList2 = InverseDFT(FmList)
+##for n in range(N):
+##    print fnList[n], fnList2[n].real
